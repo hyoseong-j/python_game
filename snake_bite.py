@@ -5,7 +5,7 @@ from pygame.locals import QUIT, KEYDOWN,\
     K_LEFT, K_RIGHT, K_UP, K_DOWN, Rect
 
 pygame.init()
-SURFACE = pygame.display.set_mode((600, 600))
+SURFACE = pygame.display.set_mode((800, 800))
 FPSCLOCK = pygame.time.Clock()
 
 FOODS = []
@@ -29,12 +29,12 @@ def move_food(pos):
 def paint(message):
     SURFACE.fill((0, 0, 0))
     for food in FOODS:
-        pygame.draw.ellipse(SURFACE, (0, 255, 0),Rect(food[0]*30, food[1]* 30, 30, 30))
+        pygame.draw.ellipse(SURFACE, (0, 255, 0),Rect(food[0] * 40, food[1]* 40, 40, 40))
     for body in SNAKE:
-        pygame.draw.rect(SURFACE, (0, 255, 255), Rect(body[0] * 30, body[1] * 30, 30, 30))
+        pygame.draw.rect(SURFACE, (0, 255, 255), Rect(body[0] * 40, body[1] * 40, 40, 40))
     for index in range(20):
-        pygame.draw.line(SURFACE, (64, 64, 64), (index * 30, 0), (index * 30, 600))
-        pygame.draw.line(SURFACE, (64, 64, 64), (0, index * 30), (600, index * 30))
+        pygame.draw.line(SURFACE, (64, 64, 64), (index * 40, 0), (index * 40, 800))
+        pygame.draw.line(SURFACE, (64, 64, 64), (0, index * 40), (800, index * 40))
     if message != None:
         SURFACE.blit(message, (150, 300))
     pygame.display.update()
@@ -69,6 +69,7 @@ def main():
                 head[0] < 0 or head[0] >= W or \
                 head[1] < 0 or head[1] >= H:
                 message = myfont.render("Game Over!", True, (255, 255, 0))
+
                 Game_over = True
 
             SNAKE.insert(0, head)
